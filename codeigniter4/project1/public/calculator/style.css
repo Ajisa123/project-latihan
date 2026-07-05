@@ -1,0 +1,226 @@
+/* ============================================
+   KALKULATOR PREMIUM — Cyber-Neon Edition
+   ============================================ */
+
+:root {
+    --bg-deep: #05050a;
+    --neon-cyan: #00f2ff;
+    --neon-pink: #ff007a;
+    --neon-purple: #bc13fe;
+    --glass-panel: rgba(15, 15, 25, 0.8);
+    --btn-bg: rgba(255, 255, 255, 0.03);
+    --text-main: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-deep);
+    /* Latar belakang grid laser */
+    background-image: 
+        linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    font-family: 'Orbitron', 'Inter', sans-serif; /* Font futuristik jika ada, jika tidak pakai Inter */
+}
+
+/* --- Wrapper Utama --- */
+.calculator-wrapper {
+    position: relative;
+    width: 360px;
+    padding: 5px;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+    border-radius: 32px;
+    box-shadow: 0 0 40px rgba(188, 19, 254, 0.3);
+}
+
+/* --- Calculator Body --- */
+.calculator {
+    background: var(--bg-deep);
+    border-radius: 28px;
+    padding: 25px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Efek Scanline (Garis-garis monitor tua) */
+.calculator::before {
+    content: " ";
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* --- Area Display --- */
+.display-container {
+    margin-bottom: 25px;
+    text-align: right;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 242, 255, 0.2);
+}
+
+.expression {
+    color: var(--neon-pink);
+    font-size: 14px;
+    letter-spacing: 2px;
+    height: 20px;
+    text-shadow: 0 0 8px var(--neon-pink);
+}
+
+#display {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--neon-cyan);
+    font-size: 50px;
+    text-align: right;
+    text-shadow: 0 0 15px var(--neon-cyan);
+    font-weight: bold;
+}
+
+/* --- Grid Tombol --- */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.buttons button {
+    height: 65px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: var(--btn-bg);
+    color: var(--text-main);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+/* Angka */
+.btn-number:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Operator */
+.btn-operator {
+    color: var(--neon-cyan);
+    border-color: var(--neon-cyan);
+}
+
+.btn-operator:hover {
+    background: var(--neon-cyan);
+    color: var(--bg-deep);
+    box-shadow: 0 0 20px var(--neon-cyan);
+}
+
+/* Fungsi (AC/DEL) */
+.btn-function {
+    color: var(--neon-pink);
+    border-color: var(--neon-pink);
+}
+
+.btn-function:hover {
+    background: var(--neon-pink);
+    color: white;
+    box-shadow: 0 0 20px var(--neon-pink);
+}
+
+/* Equals */
+.btn-equals {
+    background: var(--neon-purple);
+    color: white;
+    border: none;
+    box-shadow: 0 0 20px var(--neon-purple);
+    font-weight: bold;
+}
+
+.btn-equals:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+    box-shadow: 0 0 30px var(--neon-purple);
+}
+
+.btn-zero {
+    grid-column: span 2;
+}
+
+/* --- Animasi Saat Klik (Ditrigger JS) --- */
+.btn-press {
+    transform: scale(0.9) !important;
+    filter: contrast(2);
+}
+
+/* Ripple effect styling */
+.buttons button::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    background: white;
+    border-radius: 50%;
+    top: var(--ripple-y, 50%);
+    left: var(--ripple-x, 50%);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.buttons button:active::after {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(10);
+    transition: all 0.5s ease;
+}
+
+/* Responsive Font */
+#display.small-text { font-size: 34px; }
+#display.smaller-text { font-size: 26px; }
+
+/* Sembunyikan header lama */
+.calculator-header { display: none; }
+/* --- Footer Text Style --- */
+.footer-text {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.35); /* Warna putih transparan agar subtle */
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px; /* Jarak antar huruf agar terlihat premium */
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+/* Efek Glow saat di-hover (opsional) */
+.footer-text:hover {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink);
+    opacity: 0.8;
+}
+
+/* Garis dekoratif kecil di atas teks (opsional) */
+.footer-text::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    margin: 0 auto 10px auto;
+}
