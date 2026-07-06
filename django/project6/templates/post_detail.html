@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="article-wrapper">
+    <article class="post-card">
+        <h1 class="post-title">{{ post.title }}</h1>
+        
+        <div class="post-metadata">
+            <div><span class="meta-prompt">ajisa@pylog:~$</span> cat author.txt &rarr; <span class="meta-value">{{ post.author.username }}</span></div>
+            <div><span class="meta-prompt">ajisa@pylog:~$</span> ./readtime.sh &rarr; <span class="meta-value">{{ post.read_time }} min read</span></div>
+        </div>
+
+        <div class="post-image-wrapper">
+            {% if post.cover_image %}
+                <img src="{{ post.cover_image.url }}" alt="{{ post.title }}">
+            {% else %}
+                <div class="terminal-fallback">
+                    <p class="terminal-comment" style="margin: 0;">// ERROR: NO_BINARY_IMAGE_ATTACHED</p>
+                    <p style="margin: 5px 0;">Status: <span style="font-weight: bold;">404_IMAGE_NOT_FOUND</span></p>
+                    <p class="terminal-comment" style="margin: 0 0 0 15px;">> Sistem gagal memuat berkas gambar. Mengaktifkan buffer tampilan cadangan...</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="post-body">
+            <p>{{ post.body|linebreaksbr }}</p>
+        </div>
+    </article>
+
+    <div class="back-navigation">
+        <a href="{% url 'home' %}" class="back-link-custom">&larr; cd .. /kembali_ke_beranda</a>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,194 @@
+:root {
+    --bg-color: #0b0c10;        /* Hitam pekat obsidian */
+    --editor-bg: #1f2833;       /* Abu-abu gelap khas IDE */
+    --accent-green: #45f3ff;    /* Cyan/Hijau Neon Digital */
+    --accent-yellow: #00ff66;   /* Hijau Terminal terang */
+    --text-muted: #c5c6c7;      /* Putih keabu-abuan untuk teks biasa */
+    --border-color: #2f3b4c;
+    --font-code: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-muted);
+    font-family: var(--font-code);
+    margin: 0;
+    padding: 0;
+}
+
+/* Jendela Utama ala Code Editor */
+.editor-window {
+    max-width: 900px;
+    margin: 4rem auto;
+    background-color: var(--editor-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+/* Header Window ala macOS */
+.window-header {
+    background-color: #151c24;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.window-buttons {
+    display: flex;
+    gap: 8px;
+    margin-right: 20px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.window-title {
+    color: #667788;
+    font-size: 0.85rem;
+    flex-grow: 1;
+    text-align: center;
+    margin-right: 50px; /* offset buttons weight */
+}
+
+/* Area Konten Utama */
+.window-content {
+    padding: 2.5rem;
+}
+
+/* Brand Header */
+.brand-title {
+    color: var(--accent-green);
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    border-bottom: 2px dashed var(--border-color);
+    padding-bottom: 1rem;
+}
+
+/* Inovasi UI: Tampilan Terminal untuk State Kosong */
+.terminal-empty-state {
+    background-color: #0f141c;
+    border-left: 4px solid var(--accent-green);
+    padding: 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.terminal-line {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+.prompt {
+    color: var(--accent-yellow);
+}
+
+.command {
+    color: #fff;
+}
+
+.output-warn {
+    color: #ffbd2e; /* Kuning peringatan */
+}
+
+/* Animasi Kursor Berkedip */
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 18px;
+    background-color: var(--accent-green);
+    animation: blink 1s infinite;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+@keyframes blink {
+    0%, 49% { background-color: var(--accent-green); }
+    50%, 100% { background-color: transparent; }
+}
+
+/* Tombol Akses Cepat */
+.btn-nav {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background-color: transparent;
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-nav:hover {
+    background-color: var(--accent-green);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px rgba(69, 243, 255, 0.4);
+}
+/* Inovasi Bingkai Foto Developer Aesthetic */
+.post-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-height: 350px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(20%) brightness(85%) contrast(110%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Efek hover: gambar menjadi berwarna tajam dan menyala */
+.post-image-wrapper:hover .post-image {
+    filter: grayscale(0%) brightness(100%);
+    transform: scale(1.02);
+}
+
+/* Garis dekoratif tambahan di bawah gambar */
+.post-image-wrapper::after {
+    content: " [ASSET_RENDERED_SUCCESSFULLY] ";
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    background: rgba(15, 20, 28, 0.8);
+    color: var(--accent-green);
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    font-family: var(--font-code);
+    border-radius: 3px;
+    border: 1px solid var(--accent-green);
+}
+
+/* Inovasi Placeholder Jika Gambar Kosong */
+.image-placeholder-code {
+    width: 100%;
+    height: 180px;
+    background: repeating-linear-gradient(45deg, #151c24, #151c24 10px, #1a232d 10px, #1a232d 20px);
+    border: 1px dashed #334455;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #556677;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}

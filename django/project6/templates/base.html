@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Developer Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+
+    <div class="editor-window">
+        <div class="window-header">
+            <div class="window-buttons">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div class="window-title">main.py — Aesthetic Developer Blog</div>
+        </div>
+        
+        <div class="window-content">
+            <h1 class="brand-title">guest@ajisa-blog:~$ ./show-header</h1>
+            <main>
+                {% block content %}
+                {% endblock content %}
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
